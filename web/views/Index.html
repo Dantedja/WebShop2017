@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DA4-2 webshop</title>
+    <link rel="stylesheet" type="text/css" href="../Style.css">
+    <script src="../scripts/loginHandler.js"></script>
+    <script src="../scripts/script.js"></script>
+</head>
+
+<body>
+
+    <header>
+            <nav>
+                <ul>
+                    <li>Kontakt</li>
+                    <li>Indkøbskurv</li>
+                    <li>Login
+                        <div>
+                            <form name="loginform" onSubmit="
+                            validateLogin();" action="/views/Index.html"
+                                  method="post">
+                                <label>User name</label>
+                                <input type="text" name="usr" placeholder="username">
+                                <label>Password</label>
+                                <input type="password" name="pword" placeholder="password">
+                                <input type="submit" value="Login"/>
+                            </form>
+                            <p id="loginTracker">Not logged in</p>
+                        </div>
+                    </li>
+                    <li>Register
+                        <div>
+                            <form name="registerform" onSubmit="register();"
+                                  action="/views/Index.html"
+                                  method="post">
+                                <label>User name</label>
+                                <input type="text" name="usr" placeholder="username">
+                                <label>Password</label>
+                                <input type="password" name="pword" placeholder="password">
+                                <input type="submit" value="Login"/>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+    </header>
+
+
+    <aside>
+        <div id="logo"><img src="Images/placeholder.jpg" alt=""></div>
+
+    </aside>
+
+    <main>
+        <table style="border: 1px solid gray">
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+            </tr>
+            </thead>
+
+            <tbody id="itemtablebody">
+
+            </tbody>
+        </table>
+        <input type="button" value="Update table from server!" id="update">
+    </main>
+
+
+
+</body>
+</html>
