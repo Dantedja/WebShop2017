@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>DA4-2 webshop</title>
     <link rel="stylesheet" type="text/css" href="../Style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../scripts/loginHandler.js"></script>
     <script src="../scripts/script.js"></script>
 </head>
@@ -12,44 +13,61 @@
 <body>
 
     <header>
-            <nav>
+            <nav id="topNav">
                 <ul>
                     <li>Kontakt</li>
                     <li>Indkøbskurv</li>
-                    <li>Login
-                        <div>
-                            <form name="loginform" onSubmit="
-                            validateLogin();" action="/views/Index.html"
-                                  method="post">
-                                <label>User name</label>
-                                <input type="text" name="usr" placeholder="username">
-                                <label>Password</label>
-                                <input type="password" name="pword" placeholder="password">
-                                <input type="submit" value="Login"/>
-                            </form>
-                            <p id="loginTracker">Not logged in</p>
-                        </div>
+                    <li><a id="logButton" onclick="loginPopUp();">Login</a></li>
+                    <li id="register"><a id="regbutton"
+                                         onclick="registerPopUp();">Register</a>
                     </li>
-                    <li>Register
-                        <div>
-                            <form name="registerform" onSubmit="register();"
-                                  action="/views/Index.html"
-                                  method="post">
-                                <label>User name</label>
-                                <input type="text" name="usr" placeholder="username">
-                                <label>Password</label>
-                                <input type="password" name="pword" placeholder="password">
-                                <input type="submit" value="Login"/>
+                </ul>
+            </nav>
+            <div id="botNav">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li><div id="loginForm">
+                        <form name="loginform" method="post">
+                            <label for="usr">User name</label>
+                            <input id="usr" name="usr"
+                                   placeholder="username" required>
+                            <br />
+                            <label for="psword">Password</label>
+                            <input id="psword" type="password" name="pword"
+                                   placeholder="password" required>
+                            <br />
+                            <input id="login_button" type="button"
+                                   value="Login" onclick="validateLogin()"/>
+                            <p id="loginTracker">Not logged in</p>
+                        </form>
+
+                    </div>
+                    </li>
+                    <li>
+                        <div id="registerForm">
+                            <form name="registerform" method="post">
+                                <label for="regUsr">User name</label>
+                                <input id="regUsr" type="text" name="regUsr"
+                                       placeholder="Username">
+                                <br />
+                                <label for="regPass">Password</label>
+                                <input id="regPass" type="password"
+                                       name="regPass"
+                                       placeholder="Password">
+                                <br />
+                                <input type="button" value="Register"
+                                       onclick="register()"/>
                             </form>
                         </div>
                     </li>
                 </ul>
-            </nav>
+            </div>
     </header>
 
 
     <aside>
-        <div id="logo"><img src="Images/placeholder.jpg" alt=""></div>
+        <div id="logo"></div>
 
     </aside>
 

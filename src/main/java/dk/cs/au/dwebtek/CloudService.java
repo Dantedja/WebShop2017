@@ -5,6 +5,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
+import org.jdom2.filter.ElementFilter;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaderJDOMFactory;
 import org.jdom2.input.sax.XMLReaderXSDFactory;
@@ -18,9 +19,10 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CloudService {
-    int responseCode;
+    public int responseCode;
     private static final String SHOP_KEY = "C6DE2DB6BFC4FC6A853E276F";
     private static final Namespace NS = Namespace.getNamespace("w",
             "http://www.cs.au.dk/dWebTek/2014");
@@ -231,6 +233,24 @@ public class CloudService {
         }
         return OperationResult.Fail("Failed to retrieve item list");
     }
+
+    public ArrayList<Customer> listCustomers() throws IOException, JDOMException {
+
+        ListCustomersRequest req = new ListCustomersRequest();
+        Document doc = (Document) performRequest(req).getResult();
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+
+        Iterator<?> i = doc.getDescendants(new ElementFilter("customer",NS));
+        while(i.hasNext()) {
+            Element element = (Element)i.next();
+            int customerID = Integer.parseInt(element.getChildText
+                    ("customerID",NS));
+            String customerName = element.getChildText("customerName",NS);
+            customers.add(new Customer(customerID,customerName));
+        }
+        return customers;
+    }
+
 
     /**
      * Converts a string of description to an description element.

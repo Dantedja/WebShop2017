@@ -125,5 +125,15 @@ public class ShopService {
         return "Login failed";
     }
 
-
+    @POST
+    @Path("register")
+    public String register(@FormParam("user") String user, @FormParam
+            ("password") String password) throws JDOMException {
+        if(service.createCustomer(user,password).isSuccess()){
+            if(service.responseCode == 200){
+                return "success";
+            }
+        }
+        return "failure";
+    }
 }
